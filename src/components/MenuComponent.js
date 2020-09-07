@@ -9,6 +9,8 @@ class Menu extends Component{
 		this.state={
 				selecteddish:null	
 		}
+		
+		console.log("Constructor called");
 	}
 		
 		setSelectedDish(dish){
@@ -16,6 +18,10 @@ class Menu extends Component{
 			
 		}
 		
+		componentDidMount(){
+			console.log("componentdidmount called");
+			
+		}
 		renderDish(dish){
 			if(dish!=null){
 			return(
@@ -53,6 +59,9 @@ class Menu extends Component{
 			</div>
 			);
 		});
+		
+		console.log("render method called");
+		
 		return(
 		<div className="container">
 		  

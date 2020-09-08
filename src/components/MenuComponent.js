@@ -2,6 +2,7 @@ import React from 'react';
 import {Component} from 'react';
 import {Media} from 'reactstrap';
 import {Card,CardImg,CardImgOverlay,CardText,CardTitle} from 'reactstrap';
+import Selected from './selectedImage.js';
 
 class Menu extends Component{
 	constructor(props){
@@ -68,10 +69,8 @@ class Menu extends Component{
 		   <div className="row">
 			{menu}
 		   	</div>
-			<div className="row">
-			{this.renderDish(this.state.selecteddish)};
-		   	</div>
 			
+			<Selected dish={this.state.selecteddish}/>
 			
 		</div>
 		

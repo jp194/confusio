@@ -1,15 +1,13 @@
 import {Component} from 'react';
 import React from 'react';
 import {Card,CardImg,CardImgOverlay,CardText,CardTitle,CardBody} from 'reactstrap';
+import '../App.css'
 
 
 class Selected extends Component{
 	constructor(props){
 			super(props);
 
-		this.state={
-			
-		}
 		
 	}
 	
@@ -40,10 +38,12 @@ render(){
 	
 	
 	return(
-	
+     <div className="container">	
 	<div className="row">
+	
 	  <div className="col-sm-12 col-md-5 m-1">
-	     <Card>
+	<div className="eg">
+	    <Card >
 		   <CardImg width="100%" src={this.props.dish.image}>
 		   </CardImg>
 		    <CardBody>
@@ -53,6 +53,8 @@ render(){
 		 </CardBody>
 	  
 		 </Card>
+		</div>
+		
 	    </div>
 		
 		 <div className="col-sm-12 col-md-5 m-1">
@@ -60,7 +62,7 @@ render(){
 	     {comments}
 		 </div>
 	  </div>
-	  
+	  </div>
 	  
 	
 	

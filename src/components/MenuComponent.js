@@ -5,24 +5,11 @@ import {Card,CardImg,CardImgOverlay,CardText,CardTitle} from 'reactstrap';
 import Selected from './selectedImage.js';
 
 class Menu extends Component{
-	constructor(props){
-		super(props);
-		this.state={
-				selecteddish:null	
-		}
+	
 		
-		console.log("Constructor called");
-	}
 		
-		setSelectedDish(dish){
-			this.setState({selecteddish:dish});
-			
-		}
 		
-		componentDidMount(){
-			console.log("componentdidmount called");
-			
-		}
+		
 		renderDish(dish){
 			if(dish!=null){
 			return(
@@ -51,7 +38,7 @@ class Menu extends Component{
 		const menu=this.props.dishes.map((dish)=>{
 			return(
 			<div  key={dish.id} className="col-12 col-md-5 m-1">
-			   <Card onClick={()=>this.setSelectedDish(dish)}>
+			   <Card onClick={()=>this.props.onClick(dish.id)}>
 			   		<CardImg width="100%" src={dish.image} alt={dish.description}/>
 				  <CardImgOverlay >
 				     <CardTitle>{dish.name}</CardTitle>
@@ -61,7 +48,6 @@ class Menu extends Component{
 			);
 		});
 		
-		console.log("render method called");
 		
 		return(
 		<div className="container">
@@ -69,10 +55,10 @@ class Menu extends Component{
 		   <div className="row">
 			{menu}
 		   	</div>
+			</div>
+		
 			
-			<Selected dish={this.state.selecteddish}/>
-			
-		</div>
+		
 		
 		);
 		

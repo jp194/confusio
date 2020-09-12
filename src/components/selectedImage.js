@@ -4,23 +4,18 @@ import {Card,CardImg,CardImgOverlay,CardText,CardTitle,CardBody} from 'reactstra
 import '../App.css'
 
 
-class Selected extends Component{
-	constructor(props){
-			super(props);
 
-		
-	}
+	
 	
 	
 	
 
+ const Selected=(props)=>{
 
-
-render(){
-	if(this.props.dish!=null){
+	if(props.dish!=null){
 		var options = { year: 'numeric', month: 'long', day: 'numeric' };
 		
-	const comments=this.props.dish.comments.map((comment)=>{
+	const comments=props.dish.comments.map((comment)=>{
 		return(
 		
 		<div>
@@ -44,11 +39,11 @@ render(){
 	  <div className="col-sm-12 col-md-5 m-1">
 	<div className="eg">
 	    <Card >
-		   <CardImg width="100%" src={this.props.dish.image}>
+		   <CardImg width="100%" src={props.dish.image}>
 		   </CardImg>
 		    <CardBody>
-		   <CardTitle>{this.props.dish.name}</CardTitle>
-		   <CardText>{this.props.dish.description}</CardText>
+		   <CardTitle>{props.dish.name}</CardTitle>
+		   <CardText>{props.dish.description}</CardText>
 
 		 </CardBody>
 	  
@@ -75,8 +70,8 @@ render(){
 	}
 
 	
+	}
 	
-}
  	
-}
+
 export default Selected;

@@ -1,19 +1,21 @@
 import React from 'react';
 import {Component} from 'react';
 import {Media} from 'reactstrap';
-import {Card,CardImg,CardImgOverlay,CardText,CardTitle} from 'reactstrap';
+import {Card,CardImg,CardImgOverlay,CardText,CardTitle,Breadcrumb,BreadcrumbItem} from 'reactstrap';
 import Selected from './selectedImage.js';
+import {Link} from 'react-router-dom';
 
 	
-		 function RenderMenuItem ({dish, onClick}) {
+		 function RenderMenuItem ({dish}) {
         return (
-            <Card
-                onClick={() => onClick(dish.id)}>
+		 <Link to={`/menu/${dish.id}`}>
+            <Card>
                 <CardImg width="100%" src={dish.image} alt={dish.name} />
                 <CardImgOverlay>
                     <CardTitle>{dish.name}</CardTitle>
                 </CardImgOverlay>
             </Card>
+			</Link>
         );
     }
 			
@@ -25,7 +27,7 @@ import Selected from './selectedImage.js';
 		const menu=props.dishes.map((dish)=>{
 			return(
 			 <div className="col-12 col-md-5 m-1"  key={dish.id}>
-                    <RenderMenuItem dish={dish} onClick={props.onClick} />
+                    <RenderMenuItem dish={dish}  />
                 </div>
 			);
 		});
@@ -35,6 +37,12 @@ import Selected from './selectedImage.js';
 		<div className="container">
 		  
 		   <div className="row">
+		   <div class="col-12">
+		  <Breadcrumb>
+		    <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
+			 <BreadcrumbItem>Menu</BreadcrumbItem>
+		  </Breadcrumb> 
+		   </div>
 			{menu}
 		   	</div>
 			</div>

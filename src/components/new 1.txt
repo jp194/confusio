@@ -1,0 +1,21 @@
+constructor(props){
+		super(props);
+     this.state={
+		 modalShow:true
+		 
+	 };
+	 	this.toggleModal=this.toggleModal.bind(this);
+	}
+	
+	toggleModal(){
+		this.setState({
+			modalShow:!this.state.modalShow
+			
+		});
+		
+	}
+	
+	<Modal isOpen={this.state.modalShow} toggle={this.toggleModal}>
+	  <ModalHeader>Add Comment</ModalHeader>
+	  <ModalBody></ModalBody>
+	</Modal>

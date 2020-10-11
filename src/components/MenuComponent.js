@@ -7,6 +7,7 @@ import {Link} from 'react-router-dom';
 
 	
 		 function RenderMenuItem ({dish}) {
+			if(dish!=null){
         return (
 		 <Link to={`/menu/${dish.id}`}>
             <Card>
@@ -17,6 +18,7 @@ import {Link} from 'react-router-dom';
             </Card>
 			</Link>
         );
+			}
     }
 			
 		

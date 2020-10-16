@@ -5,6 +5,7 @@ import {Card,CardImg,CardImgOverlay,CardText,CardTitle,CardBody,Breadcrumb,Bread
 import '../App.css';
 import {Link} from 'react-router-dom';
 import {Control,LocalForm,Errors} from 'react-redux-form';
+import { Loading } from './LoadingComponent';
 
 
 const required=(val)=>val && val.length; 
@@ -126,10 +127,7 @@ class CommentForm extends Component{
 
  const Selected=(props)=>{
    
-   
-   
-	if(props.dish!=null){
-		var options = { year: 'numeric', month: 'long', day: 'numeric' };
+       		var options = { year: 'numeric', month: 'long', day: 'numeric' };
    
  
 		
@@ -151,9 +149,27 @@ class CommentForm extends Component{
 		
 		
 	});
-	
-	
-	
+        if (props.dishesLoading) {
+            return(
+                <div className="container">
+                    <div className="row">            
+                        <Loading />
+                    </div>
+                </div>
+            );
+        }
+        else if (props.dishesErrMess) {
+            return(
+                <div className="container">
+                    <div className="row">            
+                        <h4>{props.dishesErrMess}</h4>
+                    </div>
+                </div>
+            );
+        }
+   
+	else if(props.dish!=null){
+
 	return(
      <div className="container">	
 	<div className="row">

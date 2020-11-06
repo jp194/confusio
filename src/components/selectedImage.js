@@ -6,6 +6,7 @@ import '../App.css';
 import {Link} from 'react-router-dom';
 import {Control,LocalForm,Errors} from 'react-redux-form';
 import { Loading } from './LoadingComponent';
+import { baseUrl } from '../shared/baseUrl';
 
 
 const required=(val)=>val && val.length; 
@@ -188,7 +189,7 @@ class CommentForm extends Component{
 	<div className="eg">
 	
 	    <Card >
-		   <CardImg width="100%" src={props.dish.image}>
+		   <CardImg width="100%" src={baseUrl+props.dish.image}>
 		   </CardImg>
 		    <CardBody>
 		   <CardTitle>{props.dish.name}</CardTitle>

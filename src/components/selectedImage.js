@@ -35,8 +35,7 @@ class CommentForm extends Component{
 	}
 	
 	 handleSubmit(values) {
-		 this.props.addcomment(this.props.dishId, values.rating, values.name, values.comment);
-		  
+		this.props.postComment(this.props.dishId, values.rating, values.name, values.comment);  
         console.log('Current State is: ' + JSON.stringify(values));
         alert('Current State is: ' + JSON.stringify(values));
             }
@@ -208,7 +207,7 @@ class CommentForm extends Component{
 		 <h4>Comments</h4>
 	     {comments}
 		  <CommentForm 
-        addcomment={props.addcomment}
+        postComment={props.postComment}
 		dishId={props.dish.id}
         />
 		 </div>

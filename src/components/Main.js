@@ -14,7 +14,7 @@ import {PROMOTIONS} from "../shared/promotions";
 import {COMMENTS} from "../shared/comments";
 import About from "./AboutUs";
 import {connect} from "react-redux"; 
-import { addcomment,fetchDishes, fetchComments, fetchPromos } from '../redux/Action_Creator';
+import { postComment,addcomment,fetchDishes, fetchComments, fetchPromos } from '../redux/Action_Creator';
 import { actions } from 'react-redux-form';
 
 const mapStatetoProps=state=>{
@@ -29,8 +29,8 @@ const mapStatetoProps=state=>{
 
 const mapDispatchToProps = dispatch => ({
   
-    addcomment: (dishId, rating, name, comment) => dispatch(addcomment(dishId, rating, name, comment)),
-     fetchDishes: () => { dispatch(fetchDishes())},
+   postComment: (dishId, rating, author, comment) => dispatch(postComment(dishId, rating, author, comment)), 
+   fetchDishes: () => { dispatch(fetchDishes())},
 	 fetchComments: () => { dispatch(fetchComments())},
 	 fetchPromos: () => { dispatch(fetchPromos())},
 	 resetFeedbackForm: () => { dispatch(actions.reset('feedback'))},
@@ -66,6 +66,8 @@ class Main extends Component{
 		comment={this.props.comments.comments.filter((comment)=>comment.dishId===parseInt(match.params.dishId,10))}
 		 commentsErrMess={this.props.comments.errMess}
 			  addcomment={this.props.addcomment}
+			  postComment={this.props.postComment}
+            
 			   />
 		);
 		

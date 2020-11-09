@@ -5,11 +5,9 @@ export const Comments = (state ={isLoading:true,errMess:null,comments:[]}, actio
     switch (action.type) {
         case ActionTypes.ADD_COMMENT:
             var comment = action.payload;
-            comment.id = state.length;
-            comment.date = new Date().toISOString();
             console.log("my Comment: ", comment);
-            return state.concat(comment);
-			
+           return {...state, comments: state.comments.concat(comment) };
+		   
 	    case ActionTypes.ADD_COMMENTS:
 			return {...state,isLoading:false,comments:action.payload,errMess:null};
 

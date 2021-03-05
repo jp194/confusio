@@ -14,7 +14,7 @@ import {PROMOTIONS} from "../shared/promotions";
 import {COMMENTS} from "../shared/comments";
 import About from "./AboutUs";
 import {connect} from "react-redux"; 
-import { postComment,addcomment,fetchDishes, fetchComments, fetchPromos } from '../redux/Action_Creator';
+import { postComment,addcomment,fetchDishes, fetchComments, fetchPromos ,fetchLeaders,postFeedback} from '../redux/Action_Creator';
 import { actions } from 'react-redux-form';
 
 const mapStatetoProps=state=>{
@@ -30,9 +30,12 @@ const mapStatetoProps=state=>{
 const mapDispatchToProps = dispatch => ({
   
    postComment: (dishId, rating, author, comment) => dispatch(postComment(dishId, rating, author, comment)), 
+   postFeedback: (firstname,lastname,telnum,email,agree,contactType,message)=>
+                           dispatch(postFeedback(firstname,lastname,telnum,email,agree,contactType,message)),
    fetchDishes: () => { dispatch(fetchDishes())},
 	 fetchComments: () => { dispatch(fetchComments())},
 	 fetchPromos: () => { dispatch(fetchPromos())},
+	 fetchLeaders:()=> {dispatch(fetchLeaders())},
 	 resetFeedbackForm: () => { dispatch(actions.reset('feedback'))},
 	 
   });
@@ -50,10 +53,12 @@ class Main extends Component{
 	}
 	
 	 componentDidMount(){
-		 console.log("cDM");
+		
     this.props.fetchDishes();
 	 this.props.fetchComments();
-	  this.props.fetchPromos();
+	  this.props.fetchLeaders();
+	    this.props.fetchPromos();
+	
   }
 	
 	render() {
@@ -80,23 +85,30 @@ class Main extends Component{
 		 <Switch>
 		  <Route  path="/home" component={()=><Home 
                     dish={this.props.dishes.dishes.filter((dish)=>dish.featured)[0]}
-                    leader={this.props.leaders.filter((leader)=>leader.featured)[0]}
+                    leader={this.props.leaders.leaders.filter((leader)=>leader.featured)[0]}
                     promotion={this.props.promotions.promotions.filter((promotion)=>promotion.featured)[0]}
 					dishesLoading={this.props.dishes.isLoading}
                     dishesErrMess={this.props.dishes.errMess}
 					commentsErrMess={this.props.comments.errMess}
 					promosLoading={this.props.promotions.isLoading}
                     promosErrMess={this.props.promotions.errMess}
+					leadersLoading={this.props.leaders.isLoading}
+                    leadersErrMess={this.props.leaders.errMess}
 					
 					
                     					/>} />
-				 <Route  path="/contactus" component={()=><Contactus resetFeedbackForm={this.props.resetFeedbackForm}/>} />
+				 <Route  path="/contactus" component={()=><Contactus resetFeedbackForm={this.props.resetFeedbackForm}
+				 postFeedback={this.props.postFeedback}/>} />
 			 <Route exact path="/menu" component={()=><Menu dishes={this.props.dishes}
                                                   			 />}/>
 			 
 			 <Route path="/menu/:dishId" component={DishWithId} />
 			 
-			 <Route path="/aboutus" component={()=><About leaders={this.props.leaders} />}  />
+			 <Route path="/aboutus" component={()=><About leaders={this.props.leaders.leaders} 
+			 isLoading={this.props.leaders.isLoading}
+               errMess={this.props.leaders.errMess}
+					
+					/>}  />
 			 
 			 <Redirect to="/home" />
 			 
